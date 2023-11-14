@@ -4,7 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -12,10 +16,12 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "tb_infor")
-public class PersonModel{
+public class PersonModel extends RepresentationModel<PersonModel> implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID= 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false)
@@ -26,7 +32,7 @@ public class PersonModel{
 
     @Column(nullable = false)
     @NotNull(message = "Saldo must not be null")
-    private double saldo;
+    private BigDecimal saldo;
 
     @Column(nullable = false, unique = true, length = 11)
     private String cpf;
