@@ -1,6 +1,7 @@
 package com.cadastro.pessoas.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +25,7 @@ public class PersonModel{
     private int age;
 
     @Column(nullable = false)
+    @NotNull(message = "Saldo must not be null")
     private double saldo;
 
     @Column(nullable = false, unique = true, length = 11)
