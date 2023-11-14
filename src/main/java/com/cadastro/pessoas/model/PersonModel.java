@@ -26,6 +26,9 @@ public class PersonModel{
     @Column(nullable = false)
     private double saldo;
 
+    @Column(nullable = false, unique = true, length = 11)
+    private String cpf;
+
     @Column(nullable = false)
     private LocalDateTime dateCreated;
 }
